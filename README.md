@@ -47,3 +47,8 @@ public class Sample {
     }
 }
 ```
+
+### Creating your own return type
+Currently, the library supports only boolean and string return types (though this list will shortly become longer!).
+However, you may find yourself in the situation where you have custom classes or types that you need to request from the user. 
+In that case, you can simply implement the `Parsable<T>` interface and supply that instead of the `ParsableBoolean` in the example above. 
