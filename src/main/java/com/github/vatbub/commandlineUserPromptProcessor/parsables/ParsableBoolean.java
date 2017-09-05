@@ -24,16 +24,23 @@ package com.github.vatbub.commandlineUserPromptProcessor.parsables;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Created by Frederik on 03.09.2017.
+ * Implements the {@link Parsable} interface for boolean values
  */
 public class ParsableBoolean implements Parsable<Boolean> {
     private boolean value;
     private Boolean defaultValue = null;
 
+    /**
+     * Instantiates a new {@link ParsableBoolean} with no {@code defaultValue}
+     */
     public ParsableBoolean() {
         this(null);
     }
 
+    /**
+     * Instantiates a new {@link ParsableBoolean} with the given {@code defaultValue}
+     * @param defaultValue The default value to use if the user makes an invalid input
+     */
     public ParsableBoolean(Boolean defaultValue) {
         setDefaultValue(defaultValue);
     }

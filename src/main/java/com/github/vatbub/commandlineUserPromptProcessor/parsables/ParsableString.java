@@ -24,23 +24,34 @@ package com.github.vatbub.commandlineUserPromptProcessor.parsables;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Created by Frederik on 03.09.2017.
+ * Implements the {@link Parsable} interface for String values
  */
 public class ParsableString implements Parsable<String> {
     private String value;
     private String defaultValue;
 
+    /**
+     * Instantiates a new {@link ParsableString} with no {@code defaultValue}
+     */
     public ParsableString() {
         this(null);
     }
 
+    /**
+     * Instantiates a new {@link ParsableString} with the given {@code defaultValue}
+     *
+     * @param defaultValue The default value to use if the user makes an invalid input
+     */
     public ParsableString(String defaultValue) {
         setDefaultValue(defaultValue);
     }
 
     @Override
-    public void fromString(String s) {
+    public void fromString(String s) throws ParseException {
         if (s.equals("")) {
+            if (defaultValue==null){
+                throw new ParseException();
+            }
             value = defaultValue;
         } else {
             value = s;

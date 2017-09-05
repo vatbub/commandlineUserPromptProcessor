@@ -29,7 +29,15 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
- * Created by Frederik on 03.09.2017.
+ * Use this class to create prompts for user input with Standard In and Standard Out.<br>
+ * <br>
+ * Example:<br>
+ * <blockquote><pre>
+ *  boolean defaultValue = true;
+ *  Prompt prompt = new Prompt("Are you a human?", new ParsableBoolean(defaultValue));
+ *  ParsableBoolean returnValue = (ParsableBoolean) prompt.doPrompt();
+ *  boolean result = returnValue.toValue();
+ * </pre></blockquote>
  */
 @SuppressWarnings("WeakerAccess")
 public class Prompt {

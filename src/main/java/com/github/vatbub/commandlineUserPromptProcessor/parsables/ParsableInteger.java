@@ -24,7 +24,7 @@ package com.github.vatbub.commandlineUserPromptProcessor.parsables;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Created by Frederik on 04.09.2017.
+ * Implements the {@link Parsable} interface for integer values
  */
 public class ParsableInteger implements Parsable<Integer> {
     private int minValue;
@@ -32,19 +32,40 @@ public class ParsableInteger implements Parsable<Integer> {
     private int value;
     private @Nullable Integer defaultValue;
 
+    /**
+     * Instantiates a new {@link ParsableInteger} with no {@code defaultValue}
+     */
     public ParsableInteger() {
         this(null);
     }
 
+    /**
+     * Instantiates a new {@link ParsableInteger} with the given {@code defaultValue}
+     *
+     * @param defaultValue The default value to use if the user makes an invalid input
+     */
     public ParsableInteger(Integer defaultValue) {
         this(defaultValue, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
+    /**
+     * Instantiates a new {@link ParsableInteger} with the given {@code defaultValue}, min- and max values.
+     * {@code minValue} must be lower than or equal to {@code maxValue}
+     *
+     * @param defaultValue The default value to use if the user makes an invalid input
+     * @param minValue     The minimal allowed value
+     * @param maxValue     The maximal allowed value
+     */
     public ParsableInteger(Integer defaultValue, int minValue, int maxValue) {
         setDefaultValue(defaultValue);
         setAcceptedValues(minValue, maxValue);
     }
 
+    /**
+     * Sets the set of allowed inputs. {@code minValue} must be lower than or equal to {@code maxValue}
+     * @param minValue The minimal allowed value
+     * @param maxValue The maximal allowed value
+     */
     public void setAcceptedValues(int minValue, int maxValue) {
         if (maxValue < minValue) {
             throw new IllegalArgumentException("maxValue must be bigger than or equal to minValue");
@@ -54,10 +75,18 @@ public class ParsableInteger implements Parsable<Integer> {
         this.minValue = minValue;
     }
 
+    /**
+     * Returns the current maximal allowed value.
+     * @return the current maximal allowed value.
+     */
     public int getMaxValue() {
         return maxValue;
     }
 
+    /**
+     * Returns the current minimal allowed value.
+     * @return the current minimal allowed value.
+     */
     public int getMinValue() {
         return minValue;
     }

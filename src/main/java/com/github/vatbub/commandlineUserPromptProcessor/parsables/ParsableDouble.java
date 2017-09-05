@@ -24,7 +24,7 @@ package com.github.vatbub.commandlineUserPromptProcessor.parsables;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Created by Frederik on 04.09.2017.
+ * Implements the {@link Parsable} interface for double values
  */
 public class ParsableDouble implements Parsable<Double> {
     private double minValue;
@@ -32,19 +32,40 @@ public class ParsableDouble implements Parsable<Double> {
     private double value;
     private @Nullable Double defaultValue;
 
+    /**
+     * Instantiates a new {@link ParsableDouble} with no {@code defaultValue}
+     */
     public ParsableDouble() {
         this(null);
     }
 
+    /**
+     * Instantiates a new {@link ParsableDouble} with the given {@code defaultValue}
+     *
+     * @param defaultValue The default value to use if the user makes an invalid input
+     */
     public ParsableDouble(Double defaultValue) {
         this(defaultValue, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
     }
 
+    /**
+     * Instantiates a new {@link ParsableDouble} with the given {@code defaultValue}, min- and max values.
+     * {@code minValue} must be lower than or equal to {@code maxValue}
+     *
+     * @param defaultValue The default value to use if the user makes an invalid input
+     * @param minValue     The minimal allowed value
+     * @param maxValue     The maximal allowed value
+     */
     public ParsableDouble(Double defaultValue, double minValue, double maxValue) {
         setDefaultValue(defaultValue);
         setAcceptedValues(minValue, maxValue);
     }
 
+    /**
+     * Sets the set of allowed inputs. {@code minValue} must be lower than or equal to {@code maxValue}
+     * @param minValue The minimal allowed value
+     * @param maxValue The maximal allowed value
+     */
     public void setAcceptedValues(double minValue, double maxValue) {
         if (maxValue < minValue) {
             throw new IllegalArgumentException("maxValue must be bigger than or equal to minValue");
@@ -54,10 +75,18 @@ public class ParsableDouble implements Parsable<Double> {
         this.minValue = minValue;
     }
 
+    /**
+     * Returns the current maximal allowed value.
+     * @return the current maximal allowed value.
+     */
     public double getMaxValue() {
         return maxValue;
     }
 
+    /**
+     * Returns the current minimal allowed value.
+     * @return the current minimal allowed value.
+     */
     public double getMinValue() {
         return minValue;
     }
