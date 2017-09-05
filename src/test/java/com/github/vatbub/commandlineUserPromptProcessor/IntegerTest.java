@@ -55,9 +55,7 @@ public class IntegerTest extends PromptTest {
         try {
             int minValue = -10;
             int maxValue = 10;
-            ParsableInteger returnValue = (ParsableInteger) promptTestCore(promptText, "100", new ParsableInteger(null, minValue, maxValue));
-            Assert.assertEquals(minValue, returnValue.getMinValue());
-            Assert.assertEquals(maxValue, returnValue.getMaxValue());
+            promptTestCore(promptText, "100", new ParsableInteger(null, minValue, maxValue));
             Assert.fail("IndexOutOfBoundsException expected");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Test passed");
@@ -68,7 +66,57 @@ public class IntegerTest extends PromptTest {
     public void integerInputInsideOfAllowedRangeTest() throws IOException, InterruptedException, ParseException {
         String promptText = "Sample integer prompt";
 
-        ParsableInteger returnValue = (ParsableInteger) promptTestCore(promptText, "5", new ParsableInteger(null, -10, 10));
+        int minValue = -10;
+        int maxValue = 10;
+        ParsableInteger returnValue = (ParsableInteger) promptTestCore(promptText, "5", new ParsableInteger(null, minValue, maxValue));
+        Assert.assertEquals(minValue, returnValue.getMinValue());
+        Assert.assertEquals(maxValue, returnValue.getMaxValue());
         Assert.assertEquals(5, (int) returnValue.toValue());
+    }
+
+    @Test
+    public void intInputWithMinimalValueOnlyTest() throws IOException, InterruptedException, ParseException {
+        String promptText = "Sample int prompt";
+
+        int minValue = -10;
+        int maxValue = Integer.MAX_VALUE;
+        ParsableInteger returnValue = (ParsableInteger) promptTestCore(promptText, "5", new ParsableInteger(null, minValue, maxValue));
+        Assert.assertEquals(minValue, returnValue.getMinValue());
+        Assert.assertEquals(maxValue, returnValue.getMaxValue());
+        Assert.assertEquals(5, (int) returnValue.toValue());
+    }
+
+    @Test
+    public void intInputWithMaximalValueOnlyTest() throws IOException, InterruptedException, ParseException {
+        String promptText = "Sample int prompt";
+
+        int minValue = Integer.MIN_VALUE;
+        int maxValue = 10;
+        ParsableInteger returnValue = (ParsableInteger) promptTestCore(promptText, "5", new ParsableInteger(null, minValue, maxValue));
+        Assert.assertEquals(minValue, returnValue.getMinValue());
+        Assert.assertEquals(maxValue, returnValue.getMaxValue());
+        Assert.assertEquals(5, (int) returnValue.toValue());
+    }
+
+    @Test
+    public void setIllegalMinMaxInterval() {
+        try {
+            new ParsableInteger(null, 10, -10);
+            Assert.fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Test passed");
+        }
+    }
+
+    @Test
+    public void illegalInputTest() {
+        String promptText = "Sample int prompt";
+
+        try {
+            promptTestCore(promptText, "not a number", new ParsableInteger());
+            Assert.fail("ParseException expected");
+        } catch (ParseException e) {
+            System.out.println("Test passed");
+        }
     }
 }

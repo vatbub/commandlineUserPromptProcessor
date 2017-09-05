@@ -21,6 +21,7 @@ package com.github.vatbub.commandlineUserPromptProcessor;
  */
 
 
+import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParsableBoolean;
 import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParsableString;
 import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParseException;
 import org.junit.Assert;
@@ -46,5 +47,17 @@ public class StringTest extends PromptTest {
 
         ParsableString returnValue = (ParsableString) promptTestCore(promptText, "true", new ParsableString());
         Assert.assertEquals("true", returnValue.toValue());
+    }
+
+    @Test
+    public void illegalInputTest() {
+        String promptText = "Sample string prompt";
+
+        try {
+            promptTestCore(promptText, "", new ParsableString());
+            Assert.fail("ParseException expected");
+        } catch (ParseException e) {
+            System.out.println("Test passed");
+        }
     }
 }

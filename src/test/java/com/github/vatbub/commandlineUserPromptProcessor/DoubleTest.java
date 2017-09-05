@@ -55,9 +55,7 @@ public class DoubleTest extends PromptTest {
         try {
             int minValue = -10;
             int maxValue = 10;
-            ParsableDouble returnValue = (ParsableDouble) promptTestCore(promptText, "100", new ParsableDouble(null, minValue, maxValue));
-            Assert.assertEquals(minValue, returnValue.getMinValue(), 0);
-            Assert.assertEquals(maxValue, returnValue.getMaxValue(), 0);
+            promptTestCore(promptText, "100", new ParsableDouble(null, minValue, maxValue));
             Assert.fail("IndexOutOfBoundsException expected");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Test passed");
@@ -68,7 +66,57 @@ public class DoubleTest extends PromptTest {
     public void doubleInputInsideOfAllowedRangeTest() throws IOException, InterruptedException, ParseException {
         String promptText = "Sample double prompt";
 
-        ParsableDouble returnValue = (ParsableDouble) promptTestCore(promptText, "5", new ParsableDouble(null, -10, 10));
+        int minValue = -10;
+        int maxValue = 10;
+        ParsableDouble returnValue = (ParsableDouble) promptTestCore(promptText, "5", new ParsableDouble(null, minValue, maxValue));
+        Assert.assertEquals(minValue, returnValue.getMinValue(), 0);
+        Assert.assertEquals(maxValue, returnValue.getMaxValue(), 0);
         Assert.assertEquals(5.0, returnValue.toValue(), 0);
+    }
+
+    @Test
+    public void doubleInputWithMinimalValueOnlyTest() throws IOException, InterruptedException, ParseException {
+        String promptText = "Sample double prompt";
+
+        int minValue = -10;
+        double maxValue = Double.POSITIVE_INFINITY;
+        ParsableDouble returnValue = (ParsableDouble) promptTestCore(promptText, "5", new ParsableDouble(null, minValue, maxValue));
+        Assert.assertEquals(minValue, returnValue.getMinValue(), 0);
+        Assert.assertEquals(maxValue, returnValue.getMaxValue(), 0);
+        Assert.assertEquals(5.0, returnValue.toValue(), 0);
+    }
+
+    @Test
+    public void doubleInputWithMaximalValueOnlyTest() throws IOException, InterruptedException, ParseException {
+        String promptText = "Sample double prompt";
+
+        double minValue = Double.NEGATIVE_INFINITY;
+        double maxValue = 10;
+        ParsableDouble returnValue = (ParsableDouble) promptTestCore(promptText, "5", new ParsableDouble(null, minValue, maxValue));
+        Assert.assertEquals(minValue, returnValue.getMinValue(), 0);
+        Assert.assertEquals(maxValue, returnValue.getMaxValue(), 0);
+        Assert.assertEquals(5.0, returnValue.toValue(), 0);
+    }
+
+    @Test
+    public void setIllegalMinMaxInterval() {
+        try {
+            new ParsableDouble(null, 10, -10);
+            Assert.fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Test passed");
+        }
+    }
+
+    @Test
+    public void illegalInputTest() {
+        String promptText = "Sample double prompt";
+
+        try {
+            promptTestCore(promptText, "not a number", new ParsableDouble());
+            Assert.fail("ParseException expected");
+        } catch (ParseException e) {
+            System.out.println("Test passed");
+        }
     }
 }

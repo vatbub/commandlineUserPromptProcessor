@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * Created by Frederik on 04.09.2017.
  */
-public class BooleanTest extends PromptTest{
+public class BooleanTest extends PromptTest {
     @Test
     public void booleanInputTest() throws IOException, InterruptedException, ParseException {
         String promptText = "Sample boolean prompt";
@@ -70,5 +70,17 @@ public class BooleanTest extends PromptTest{
 
         returnValue = (ParsableBoolean) promptTestCore(promptText, "", new ParsableBoolean(false));
         Assert.assertEquals(false, returnValue.toValue());
+    }
+
+    @Test
+    public void illegalInputTest() {
+        String promptText = "Sample boolean prompt";
+
+        try {
+            promptTestCore(promptText, "", new ParsableBoolean());
+            Assert.fail("ParseException expected");
+        } catch (ParseException e) {
+            System.out.println("Test passed");
+        }
     }
 }
