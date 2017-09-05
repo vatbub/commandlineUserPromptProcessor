@@ -53,8 +53,11 @@ public class IntegerTest extends PromptTest {
         String promptText = "Sample integer prompt";
 
         try {
-            //noinspection unused
-            ParsableInteger returnValue = (ParsableInteger) promptTestCore(promptText, "100", new ParsableInteger(null, -10, 10));
+            int minValue = -10;
+            int maxValue = 10;
+            ParsableInteger returnValue = (ParsableInteger) promptTestCore(promptText, "100", new ParsableInteger(null, minValue, maxValue));
+            Assert.assertEquals(minValue, returnValue.getMinValue());
+            Assert.assertEquals(maxValue, returnValue.getMaxValue());
             Assert.fail("IndexOutOfBoundsException expected");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Test passed");

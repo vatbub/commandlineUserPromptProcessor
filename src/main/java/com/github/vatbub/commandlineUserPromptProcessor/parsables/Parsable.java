@@ -68,6 +68,7 @@ public interface Parsable<T> {
      * Sets the default value to be used if the user input cannot be parsed
      * @param defaultValue The default value to set
      */
+    @SuppressWarnings("unused")
     void setDefaultValue(@Nullable T defaultValue);
 
     /**

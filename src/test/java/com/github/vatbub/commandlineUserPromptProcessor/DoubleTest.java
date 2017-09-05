@@ -22,7 +22,6 @@ package com.github.vatbub.commandlineUserPromptProcessor;
 
 
 import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParsableDouble;
-import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParsableInteger;
 import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParseException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -54,8 +53,11 @@ public class DoubleTest extends PromptTest {
         String promptText = "Sample double prompt";
 
         try {
-            //noinspection unused
-            ParsableDouble returnValue = (ParsableDouble) promptTestCore(promptText, "100", new ParsableDouble(null, -10, 10));
+            int minValue = -10;
+            int maxValue = 10;
+            ParsableDouble returnValue = (ParsableDouble) promptTestCore(promptText, "100", new ParsableDouble(null, minValue, maxValue));
+            Assert.assertEquals(minValue, returnValue.getMinValue(), 0);
+            Assert.assertEquals(maxValue, returnValue.getMaxValue(), 0);
             Assert.fail("IndexOutOfBoundsException expected");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Test passed");
@@ -67,6 +69,6 @@ public class DoubleTest extends PromptTest {
         String promptText = "Sample double prompt";
 
         ParsableDouble returnValue = (ParsableDouble) promptTestCore(promptText, "5", new ParsableDouble(null, -10, 10));
-        Assert.assertEquals(5.0,  returnValue.toValue(), 0);
+        Assert.assertEquals(5.0, returnValue.toValue(), 0);
     }
 }
