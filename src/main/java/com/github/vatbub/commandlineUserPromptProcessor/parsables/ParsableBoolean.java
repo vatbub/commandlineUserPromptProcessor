@@ -25,6 +25,8 @@ import org.jetbrains.annotations.Nullable;
 
 /**
  * Implements the {@link Parsable} interface for boolean values
+ *
+ * @see ParsableYesNoBoolean
  */
 public class ParsableBoolean implements Parsable<Boolean> {
     private boolean value;
@@ -39,6 +41,7 @@ public class ParsableBoolean implements Parsable<Boolean> {
 
     /**
      * Instantiates a new {@link ParsableBoolean} with the given {@code defaultValue}
+     *
      * @param defaultValue The default value to use if the user makes an invalid input
      */
     public ParsableBoolean(Boolean defaultValue) {

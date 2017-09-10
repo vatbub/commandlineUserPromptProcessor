@@ -22,7 +22,10 @@ package com.github.vatbub.commandlineUserPromptProcessor;
 
 
 import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParsableBoolean;
+import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParsableYesNoBoolean;
 import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParseException;
+import org.hamcrest.core.StringContains;
+import org.hamcrest.text.IsEqualIgnoringCase;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -82,5 +85,18 @@ public class BooleanTest extends PromptTest {
         } catch (ParseException e) {
             System.out.println("Test passed");
         }
+    }
+
+    @Test
+    public void yesNoBooleanTest() {
+        ParsableYesNoBoolean returnValue = new ParsableYesNoBoolean();
+        Assert.assertThat(returnValue.getOptionsString(), new StringContains("yes"));
+        Assert.assertThat(returnValue.getOptionsString(), new StringContains("no"));
+
+        Assert.assertEquals(null, returnValue.getStringForDefaultValue());
+        returnValue.setDefaultValue(true);
+        Assert.assertThat(returnValue.getStringForDefaultValue(), new IsEqualIgnoringCase("yes"));
+        returnValue.setDefaultValue(false);
+        Assert.assertThat(returnValue.getStringForDefaultValue(), new IsEqualIgnoringCase("no"));
     }
 }
