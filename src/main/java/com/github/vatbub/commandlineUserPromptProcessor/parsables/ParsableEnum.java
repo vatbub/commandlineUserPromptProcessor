@@ -23,13 +23,18 @@ package com.github.vatbub.commandlineUserPromptProcessor.parsables;
 
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Implements the {@link Parsable} interface for enums. Important: Parsing of the user input is case-insensitive.
+ *
+ * @param <E> The enum type to be requested from the user
+ */
 public class ParsableEnum<E extends Enum<E>> implements Parsable<E> {
     private Class<E> eClass;
     private E value;
     private E defaultValue;
 
     /**
-     * Instantiates a new {@link ParsableBoolean} with no {@code defaultValue}
+     * Instantiates a new {@link ParsableEnum} with no {@code defaultValue}
      *
      * @param eClass The class of the enum
      */
@@ -38,7 +43,7 @@ public class ParsableEnum<E extends Enum<E>> implements Parsable<E> {
     }
 
     /**
-     * Instantiates a new {@link ParsableBoolean} with the given {@code defaultValue}
+     * Instantiates a new {@link ParsableEnum} with the given {@code defaultValue}
      *
      * @param eClass       The class of the enum
      * @param defaultValue The default value to use if the user makes an invalid input
@@ -60,6 +65,17 @@ public class ParsableEnum<E extends Enum<E>> implements Parsable<E> {
      */
     @Override
     public void fromString(String s) throws ParseException {
+        // fix the case
+        E[] enumConstants = geteClass().getEnumConstants();
+
+        for (E constant : enumConstants) {
+            if (constant.toString().equals(s)) {
+                break;
+            } else if (constant.toString().equalsIgnoreCase(s)) {
+                s = constant.toString();
+            }
+        }
+
         try {
             value = E.valueOf(geteClass(), s);
         } catch (IllegalArgumentException e) {
