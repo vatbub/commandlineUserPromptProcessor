@@ -27,17 +27,26 @@ import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParseException
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
-
 public class EnumTest extends PromptTest {
     @Test
-    public void enumInputTest() throws IOException, InterruptedException, ParseException {
+    public void enumInputTest() throws ParseException {
         String promptText = "Sample enum prompt";
 
         Parsable returnValue = promptTestCore(promptText, "enumValue1", new ParsableEnum<>(TestEnum.class));
         Assert.assertEquals(TestEnum.enumValue1, returnValue.toValue());
 
         returnValue = promptTestCore(promptText, "enumValue2", new ParsableEnum<>(TestEnum.class));
+        Assert.assertEquals(TestEnum.enumValue2, returnValue.toValue());
+    }
+
+    @Test
+    public void badCaseTest() throws ParseException {
+        String promptText = "Sample enum prompt";
+
+        Parsable returnValue = promptTestCore(promptText, "ENUMVALUE1", new ParsableEnum<>(TestEnum.class));
+        Assert.assertEquals(TestEnum.enumValue1, returnValue.toValue());
+
+        returnValue = promptTestCore(promptText, "ENUMVALUE2", new ParsableEnum<>(TestEnum.class));
         Assert.assertEquals(TestEnum.enumValue2, returnValue.toValue());
     }
 
