@@ -67,22 +67,20 @@ public class ParsableEnum<E extends Enum<E>> implements Parsable<E> {
     public void fromString(String s) throws ParseException {
         // fix the case
         E[] enumConstants = geteClass().getEnumConstants();
+        boolean found = false;
 
         for (E constant : enumConstants) {
-            if (constant.toString().equals(s)) {
-                break;
-            } else if (constant.toString().equalsIgnoreCase(s)) {
-                s = constant.toString();
+            if (constant.toString().equalsIgnoreCase(s)) {
+                value = constant;
+                found = true;
             }
         }
 
-        try {
-            value = E.valueOf(geteClass(), s);
-        } catch (IllegalArgumentException e) {
+        if (!found) {
             if (getDefaultValue() != null) {
                 value = getDefaultValue();
             } else {
-                throw new ParseException(e.getMessage(), e);
+                throw new ParseException("No enum constant found: " + geteClass().getName() + "." + s);
             }
         }
     }
