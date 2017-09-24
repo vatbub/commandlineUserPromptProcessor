@@ -15,7 +15,7 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_b3fe6148db0d_key -iv $encrypted_b3fe6148db0d_iv -in github_deploy_key.enc -out github_deploy_key -d
 install: echo Install phase has been disabled as a complete build is run during deployment
 script:
-- mvn org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar --settings target/travis/settings.xml
+- mvn org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar --settings travisMavenSettings.xml
 before_cache:
 - mvn deploy --settings travisMavenSettings.xml -DskipTests=true
 after_success:
