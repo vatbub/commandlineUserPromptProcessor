@@ -52,7 +52,7 @@
     <parent>
         <groupId>com.github.vatbub</groupId>
         <artifactId>parentPom</artifactId>
-        <version>0.0.24-SNAPSHOT</version>
+        <version>0.0.25-SNAPSHOT</version>
     </parent>
 
     <artifactId>commandlineUserPromptProcessor</artifactId>
@@ -85,7 +85,7 @@
         <dependency>
             <groupId>com.github.stefanbirkner</groupId>
             <artifactId>system-rules</artifactId>
-            <version>1.16.1</version>
+            <version>1.17.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
