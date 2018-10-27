@@ -1,5 +1,8 @@
 # Change Log
 
+## [commandlineUserPromptProcessor-1.1](https://github.com/vatbub/commandlineUserPromptProcessor/tree/commandlineUserPromptProcessor-1.1) (2018-10-27)
+[Full Changelog](https://github.com/vatbub/commandlineUserPromptProcessor/compare/commandlineUserPromptProcessor-1.0...commandlineUserPromptProcessor-1.1)
+
 ## [commandlineUserPromptProcessor-1.0](https://github.com/vatbub/commandlineUserPromptProcessor/tree/commandlineUserPromptProcessor-1.0) (2018-08-12)
 
 
