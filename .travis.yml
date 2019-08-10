@@ -15,7 +15,6 @@ install:
 - tar -xf jdk-8u191-linux-x64.tar.gz
 - export JAVA_HOME=/home/travis/build/vatbub/commandlineUserPromptProcessor/jdk1.8.0_191/
 script:
-- mvn dependency:tree -Dincludes=junit:junit
 - mvn org.jacoco:jacoco-maven-plugin:prepare-agent deploy sonar:sonar --settings travisMavenSettings.xml
 after_success:
   - git checkout master
