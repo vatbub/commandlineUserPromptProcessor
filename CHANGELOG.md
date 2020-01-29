@@ -1,5 +1,14 @@
 # Change Log
 
+## [Unreleased](https://github.com/vatbub/commandlineUserPromptProcessor/tree/HEAD)
+
+[Full Changelog](https://github.com/vatbub/commandlineUserPromptProcessor/compare/commandlineUserPromptProcessor-1.1...HEAD)
+
+**Merged pull requests:**
+
+- Bump parentPom from 1.0.1-SNAPSHOT to 1.0.3-SNAPSHOT [\#2](https://github.com/vatbub/commandlineUserPromptProcessor/pull/2) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+- Bump system-rules from 1.18.0 to 1.19.0 [\#1](https://github.com/vatbub/commandlineUserPromptProcessor/pull/1) ([dependabot-preview[bot]](https://github.com/apps/dependabot-preview))
+
 ## [commandlineUserPromptProcessor-1.1](https://github.com/vatbub/commandlineUserPromptProcessor/tree/commandlineUserPromptProcessor-1.1) (2018-10-27)
 [Full Changelog](https://github.com/vatbub/commandlineUserPromptProcessor/compare/commandlineUserPromptProcessor-1.0...commandlineUserPromptProcessor-1.1)
 
