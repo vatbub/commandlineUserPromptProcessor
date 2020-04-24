@@ -1,4 +1,4 @@
-# Command line User Prompt Processor
+# Command line User Prompt Processor ![Maven Central](https://img.shields.io/maven-central/v/com.github.vatbub/commandlineUserPromptProcessor)
 This is a library for user interaction during the execution of a cli application.
 Oftentimes, you will find yourself in the need to request user input using `System.in` or a `Scanner`.
 You would print a prompt like `Please enter the file name: ` using `System.println()` and then use something like `scanner.nextLine()` to parse the input.
@@ -15,7 +15,7 @@ This will install the library to your local maven repository. You can then use i
 <dependency>
     <groupId>com.github.vatbub</groupId>
     <artifactId>commandlineUserPromptProcessor</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1</version>
 </dependency>
 ```
 
