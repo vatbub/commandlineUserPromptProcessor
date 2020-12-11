@@ -1,4 +1,4 @@
-package com.github.vatbub.commandlineUserPromptProcessor.parsables;
+package com.github.vatbub.commandlineUserPromptProcessor.parsers
 
 /*-
  * #%L
@@ -20,28 +20,23 @@ package com.github.vatbub.commandlineUserPromptProcessor.parsables;
  * #L%
  */
 
-
 /**
- * Thrown if the user input cannot be parsed.
+ * Created by Frederik on 04.09.2017.
  */
-public class ParseException extends Exception {
-    public ParseException() {
-        super();
-    }
+open class BooleanParserTest : ParserTest<BooleanParser, Boolean>() {
+    override val expectedOptionsString = "true/false"
+    override val illegalInputs = listOf("", "10.0")
+    override val legalDefaultValues = mapOf(true to "true", false to "false")
+    override val legalInputs = mapOf(
+        "true" to true,
+        "yes" to true,
+        "t" to true,
+        "y" to true,
+        "false" to false,
+        "no" to false,
+        "f" to false,
+        "n" to false
+    )
 
-    public ParseException(String message) {
-        super(message);
-    }
-
-    public ParseException(Throwable cause) {
-        super(cause);
-    }
-
-    public ParseException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public ParseException(String message, Throwable cause, boolean enableSuppression, boolean writableStacktrace) {
-        super(message, cause, enableSuppression, writableStacktrace);
-    }
+    override fun newObjectUnderTest(): BooleanParser = BooleanParser()
 }

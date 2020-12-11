@@ -20,10 +20,11 @@ This will install the library to your local maven repository. You can then use i
 ```
 
 ## Usage
+
 ```java
 import com.github.vatbub.commandlineUserPromptProcessor.Prompt;
 import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParsableBoolean;
-import com.github.vatbub.commandlineUserPromptProcessor.parsables.ParseException;
+import com.github.vatbub.commandlineUserPromptProcessor.parsers.ParseException;
 
 public class Sample {
     public static void main(String[] args) {
