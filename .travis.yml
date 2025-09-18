@@ -2,9 +2,6 @@ language: java
 sudo: required
 jdk:
 - openjdk14
-addons:
-  sonarcloud:
-    organization: "vatbub-github"
 cache:
   directories:
   - $HOME/.m2
@@ -15,7 +12,7 @@ install:
   - tar -xf OpenJDK21U-jdk_x64_linux_hotspot_21.0.8_9.tar.gz
   - export JAVA_HOME=/home/travis/build/vatbub/commandlineUserPromptProcessor/jdk-21.0.8+9
 script:
-- mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar --settings travisMavenSettings.xml
+- mvn verify --settings travisMavenSettings.xml
 after_success:
   - source ./travisAfterSuccess.sh
 notifications:
